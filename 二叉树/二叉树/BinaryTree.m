@@ -662,54 +662,37 @@
     return NO;
 }
 
+/**
+ 判断是否平衡二叉树
+ 平衡二叉树:是一个空树或者它的左右两个子树的高度差的绝对值不超过1,并且左右两个子树都是一颗平衡二叉树
+ 平衡二叉树又叫AVL数
+
+ @param rootNode 根节点
+ @return YES:平衡二叉树 NO: 非平衡二叉树
+ */
++ (BOOL)isAVLBinaryTree:(BinaryTreeNode *)rootNode {
+    static NSInteger height;
+    if (!rootNode) {
+        height = 0;
+        return YES;
+    }
+    
+    if (!rootNode.leftNode && !rootNode.rightNode) {
+        height = 1;
+        return YES;
+    }
+    
+    BOOL isAVLLeft = [self isAVLBinaryTree:rootNode.leftNode];
+    NSInteger heightLeft = height;
+    
+    BOOL isAVLright = [self isAVLBinaryTree:rootNode.rightNode];
+    NSInteger heightRight = height;
+    
+    height = MAX(heightLeft, heightRight) + 1;
+    if (isAVLLeft && isAVLright && ABS(heightLeft - heightRight) <= 1) {
+        return YES;
+    }
+    return NO;
+}
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

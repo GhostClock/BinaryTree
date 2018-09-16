@@ -228,5 +228,14 @@
  */
 + (BOOL)isFullBinaryTree:(BinaryTreeNode *)rootNode;
 
+/**
+ 判断是否平衡二叉树
+ 平衡二叉树:是一个空树或者它的左右两个子树的高度差的绝对值不超过1,并且左右两个子树都是一颗平衡二叉树
+ 平衡二叉树又叫AVL数
+ 
+ @param rootNode 根节点
+ @return YES:平衡二叉树 NO: 非平衡二叉树
+ */
++ (BOOL)isAVLBinaryTree:(BinaryTreeNode *)rootNode;
 
 @end
