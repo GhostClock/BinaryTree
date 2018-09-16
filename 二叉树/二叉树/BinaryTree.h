@@ -206,7 +206,17 @@
  */
 + (BinaryTreeNode *)invertBinaryTree:(BinaryTreeNode *)rootNode;
 
-
+/**
+ 是否完全二叉树
+ 完全二叉树: 如果设二叉树的高度为h,除了第h层，其他各层的节点树都达到最大个数,第h层右叶子节点,并且叶子节点都是从左到右依次排布
+ 完全二叉树必须满足两个条件:
+ 1.如果某个节点的右子树不为空，则它的左子树必须为空
+ 2.如果某个节点的右子树不为空，则排在它后面的节点必须没有孩子节点
+ 
+ @param rootNode 根节点
+ @return YES:完全二叉树 NO:不完全二叉树
+ */
++ (BOOL)isCompleteBinaryTree:(BinaryTreeNode *)rootNode;
 
 
 

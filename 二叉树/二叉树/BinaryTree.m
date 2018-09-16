@@ -579,6 +579,66 @@
     return rootNode;
 }
 
+/**
+ 是否完全二叉树
+ 完全二叉树: 如果设二叉树的高度为h,除了第h层，其他各层的节点树都达到最大个数,第h层右叶子节点,并且叶子节点都是从左到右依次排布
+ 完全二叉树必须满足两个条件:
+ 1.如果某个节点的右子树不为空，则它的左子树必须为空
+ 2.如果某个节点的右子树不为空，则排在它后面的节点必须没有孩子节点
+
+ @param rootNode 根节点
+ @return YES:完全二叉树 NO:不完全二叉树
+ */
++ (BOOL)isCompleteBinaryTree:(BinaryTreeNode *)rootNode {
+    if (!rootNode) {
+        return NO;
+    }
+    // 左子树和右子树都是空，则是完全二叉树
+    if (!rootNode.leftNode && !rootNode.rightNode) {
+        return YES;
+    }
+    // 左子树是空，右子树不为空，则不是完全二叉树
+    if (!rootNode.leftNode && rootNode.rightNode) {
+        return NO;
+    }
+    // 按层次遍历节点,找到满足是完全二叉树的条件:
+    // 1.如果某个节点的右子节点不为空,则它的左子树必须不为空
+    // 2.如果某个节点的右子树不为空,则排在它后面的节点必须没有孩子节点
+    // 排在该节点后面的节点右两种:1.同层次的后面节点 2.同层次的前面的节点的还是节点（因为变量前面的节点的时候，会将节点从队列中pop, 同时把它的还是节点push到队列里面）
+    NSMutableArray *queueArray = NSMutableArray.array;
+    [queueArray addObject:rootNode];
+    BOOL isComplete = NO; // 是否完全二叉树
+    while (queueArray.count > 0) {
+        BinaryTreeNode *node = queueArray.firstObject;
+        [queueArray removeObjectAtIndex:0];
+        
+        // 左子树为空切右子树不为空，则不是完全二叉树
+        if (!node.leftNode && node.rightNode) {
+            return NO;
+        }
+        
+        if (isComplete && (node.leftNode || node.rightNode)) {
+            // 前面的节点已经满足完全二叉树,如果还有孩子节点，则不是完全二叉树
+            return NO;
+        }
+        
+        // 右子节点为空，则已经满足完全二叉树
+        if (!node.rightNode) {
+            isComplete = YES;
+        }
+        
+        // 加入到数组中
+        if (node.rightNode) {
+            [queueArray addObject:node.leftNode];
+        }
+        
+        if (node.rightNode) {
+            [queueArray addObject:node.rightNode];
+        }
+    }
+    return isComplete;
+}
+
 @end
 
 
