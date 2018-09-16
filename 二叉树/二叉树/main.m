@@ -12,6 +12,8 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
+        // 参考博客: https://www.cnblogs.com/manji/p/4903990.html
+        
         BinaryTreeNode *node = [BinaryTree createTreeWithValue:@[@1, @2, @4, @2, @1, @5]];
         node = [BinaryTree addTreeNode:node value:100];
         node = [BinaryTree addTreeNode:node value:-1];
