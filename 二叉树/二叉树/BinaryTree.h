@@ -218,6 +218,15 @@
  */
 + (BOOL)isCompleteBinaryTree:(BinaryTreeNode *)rootNode;
 
+/**
+ 是否满二叉树
+ 满二叉树: 除了叶节点外, 每个节点都有左右子叶且叶子节点都出在最底层的二叉树
+ 特性:叶子数=2^(深度-1),因此我们可以根据这个特性来判断二叉树是否为满二叉树
+ 
+ @param rootNode 根节点
+ @return YES:满二叉树 NO:非满二叉树
+ */
++ (BOOL)isFullBinaryTree:(BinaryTreeNode *)rootNode;
 
 
 @end
